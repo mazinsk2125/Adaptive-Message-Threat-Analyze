@@ -6,13 +6,11 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 import string
 
-# Download nltk resources if you haven't
 nltk.download('punkt')
 nltk.download('stopwords')
 
 app = Flask(__name__)
 
-# Load the saved model and vectorizer
 with open('model.pkl', 'rb') as f:
     model = pickle.load(f)
 
@@ -23,14 +21,14 @@ stop_words = set(stopwords.words('english'))
 stemmer = PorterStemmer()
 
 def preprocess_text(text):
-    # Lowercase and remove punctuation
+
     text = text.lower()
     text = text.translate(str.maketrans('', '', string.punctuation))
 
-    # Tokenize
+
     words = word_tokenize(text)
 
-    # Remove stopwords and stem
+
     filtered_words = [stemmer.stem(w) for w in words if w not in stop_words]
 
     return ' '.join(filtered_words)

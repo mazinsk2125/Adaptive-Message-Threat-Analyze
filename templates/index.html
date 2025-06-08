@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spam Detector</title>
+    <style>
+        /* Reset some default styles */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #1f1f1f;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            color: #ff6b6b;
+            text-shadow: 0 0 5px #ff6b6b;
+        }
+
+        form textarea {
+            width: 100%;
+            border-radius: 8px;
+            border: none;
+            resize: vertical;
+            min-height: 140px;
+            font-size: 1rem;
+            padding: 15px;
+            background-color: #2a2a2a;
+            color: #ddd;
+            box-sizing: border-box;
+            box-shadow: inset 0 0 8px #333;
+            transition: background-color 0.3s ease;
+        }
+
+        form textarea::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        form textarea:focus {
+            background-color: #3a3a3a;
+            outline: none;
+            box-shadow: inset 0 0 10px #ff6b6b;
+            color: #fff;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #ff6b6b;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: #121212;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.5);
+        }
+
+        button:hover {
+            background-color: #ff4c4c;
+            box-shadow: 0 7px 20px rgba(255, 76, 76, 0.7);
+        }
+
+        .prediction {
+            margin-top: 25px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: inline-block;
+            color: #121212;
+            background-color: #ff6b6b;
+            box-shadow: 0 0 15px #ff6b6b;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Spam Message Detector</h2>
+        <form method="POST" autocomplete="off">
+            <textarea name="message" rows="5" placeholder="Enter your message here...">{{ message }}</textarea>
+            <br />
+            <button type="submit">Check</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction">Prediction: {{ prediction }}</div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
